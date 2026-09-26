@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ff477e">
+  <meta name="description" content="Маленькое приглашение на свидание для Ариадны">
+  <title>Для Ариадны 💘</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700&family=Marck+Script&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ff477e'/%3E%3Cpath d='M32 50S10 38 10 23c0-11 14-15 22-5 8-10 22-6 22 5 0 15-22 27-22 27Z' fill='white'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --pink: #ff477e;
+      --pink-dark: #d92762;
+      --pink-soft: #ffe2ec;
+      --cream: #fff8f6;
+      --ink: #3f1d2b;
+      --muted: #7c5c68;
+      --line: rgba(111, 32, 64, .12);
+      --card: rgba(255, 255, 255, .88);
+      --shadow: 0 22px 60px rgba(159, 28, 77, .18);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { min-height: 100%; background: #ffc9db; }
+
+    body {
+      min-height: 100dvh;
+      margin: 0;
+      color: var(--ink);
+      font-family: "Comfortaa", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255,255,255,.9) 0 5%, transparent 16%),
+        radial-gradient(circle at 92% 20%, rgba(255,255,255,.6) 0 8%, transparent 24%),
+        linear-gradient(145deg, #ffdce7 0%, #ffc4d8 55%, #ffadc9 100%);
+      overflow-x: hidden;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .app {
+      position: relative;
+      display: grid;
+      min-height: 100dvh;
+      padding: max(18px, env(safe-area-inset-top)) 16px max(18px, env(safe-area-inset-bottom));
+      isolation: isolate;
+    }
+
+    .float-heart {
+      position: fixed;
+      z-index: -1;
+      font-size: clamp(24px, 7vw, 44px);
+      opacity: .45;
+      animation: drift 5s ease-in-out infinite;
+      pointer-events: none;
+      filter: drop-shadow(0 7px 10px rgba(175, 30, 84, .15));
+    }
+
+    .heart-a { top: 8%; left: 8%; transform: rotate(-14deg); }
+    .heart-b { top: 17%; right: 8%; animation-delay: -1.8s; }
+    .heart-c { bottom: 9%; left: 10%; animation-delay: -3s; }
+
+    @keyframes drift {
+      0%, 100% { translate: 0 0; rotate: -4deg; }
+      50% { translate: 0 -14px; rotate: 5deg; }
+    }
+
+    .shell {
+      width: min(100%, 430px);
+      margin: auto;
+    }
+
+    .progress {
+      display: flex;
+      gap: 7px;
+      width: 138px;
+      margin: 0 auto 14px;
+    }
+
+    .progress span {
+      height: 5px;
+      flex: 1;
+      border-radius: 999px;
+      background: rgba(255,255,255,.58);
+      transition: .35s ease;
+    }
+
+    .progress span.done { background: var(--pink); }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 28px 20px 22px;
+      border: 1px solid rgba(255,255,255,.82);
+      border-radius: 30px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      top: -56px;
+      right: -45px;
+      border-radius: 50%;
+      background: var(--pink-soft);
+    }
+
+    .step { display: none; animation: appear .42s ease both; }
+    .step.active { display: block; }
+
+    @keyframes appear {
+      from { opacity: 0; translate: 0 10px; }
+      to { opacity: 1; translate: 0 0; }
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--pink-dark);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1, h2 { margin: 0; letter-spacing: -.04em; }
+
+    h1 {
+      max-width: 320px;
+      font-size: clamp(2.1rem, 11vw, 3.25rem);
+      line-height: .98;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 8vw, 2.45rem);
+      line-height: 1.06;
+    }
+
+    .script {
+      display: block;
+      margin-top: 8px;
+      color: var(--pink);
+      font-family: "Marck Script", cursive;
+      font-size: 1.45em;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .poem {
+      margin: 24px 0;
+      padding: 18px;
+      border-left: 3px solid var(--pink);
+      border-radius: 0 18px 18px 0;
+      background: linear-gradient(90deg, var(--pink-soft), rgba(255,255,255,.2));
+      font-family: "Marck Script", cursive;
+      font-size: clamp(1.35rem, 6vw, 1.7rem);
+      line-height: 1.42;
+    }
+
+    .hint, .error {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.45;
+    }
+
+    .error {
+      min-height: 41px;
+      color: var(--pink-dark);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 54px;
+      padding: 14px 20px;
+      border: 0;
+      border-radius: 18px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--pink), #f72f69);
+      box-shadow: 0 12px 25px rgba(232, 41, 102, .28);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .btn:active { transform: scale(.98); }
+    .btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid rgba(255, 71, 126, .25);
+      outline-offset: 3px;
+    }
+
+    .choice-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
+    .choice-row .btn { width: auto; }
+
+    .btn-ghost {
+      color: var(--pink-dark);
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    .shake { animation: shake .35s linear; }
+    @keyframes shake { 25% { translate: -7px 0; } 50% { translate: 7px 0; } 75% { translate: -4px 0; } }
+
+    .form-grid { display: grid; gap: 14px; margin-top: 22px; }
+
+    label { display: grid; gap: 7px; font-size: .88rem; font-weight: 700; }
+
+    select, input, textarea {
+      width: 100%;
+      min-height: 49px;
+      padding: 12px 14px;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(255,255,255,.9);
+      outline: 0;
+    }
+
+    textarea { min-height: 74px; resize: vertical; line-height: 1.35; }
+    .hidden { display: none !important; }
+
+    .form-actions { display: grid; grid-template-columns: auto 1fr; gap: 10px; margin-top: 18px; }
+    .back { width: 54px; padding: 0; }
+
+    .ticket {
+      margin-top: 20px;
+      border: 1px dashed rgba(218, 39, 98, .35);
+      border-radius: 20px;
+      background: #fff;
+    }
+
+    .ticket-head {
+      padding: 14px 16px;
+      border-bottom: 1px dashed rgba(218, 39, 98, .25);
+      color: var(--pink-dark);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .summary { margin: 0; padding: 5px 16px 10px; }
+    .summary div { display: grid; grid-template-columns: 28px 1fr; gap: 8px; padding: 10px 0; border-bottom: 1px solid #f4e7ec; }
+    .summary div:last-child { border-bottom: 0; }
+    .summary dt { font-size: 1.05rem; }
+    .summary dd { margin: 0; min-width: 0; font-size: .88rem; line-height: 1.35; overflow-wrap: anywhere; }
+    .summary strong { display: block; margin-bottom: 2px; color: var(--muted); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; }
+
+    .final-note {
+      margin: 14px 0;
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .final-actions { display: grid; gap: 9px; }
+    .mini-link {
+      display: block;
+      padding: 4px;
+      border: 0;
+      color: var(--muted);
+      text-align: center;
+      text-decoration: underline;
+      background: transparent;
+      cursor: pointer;
+      font-size: .8rem;
+    }
+
+    .confetti {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .confetti i {
+      position: absolute;
+      top: -30px;
+      font-style: normal;
+      animation: fall 2.7s ease-in forwards;
+    }
+
+    @keyframes fall { to { translate: var(--shift) 110dvh; rotate: 540deg; } }
+
+    @media (min-width: 700px) {
+      .card { padding: 34px 30px 28px; }
+      .shell { width: min(100%, 480px); }
+    }
+
+    @media (max-height: 740px) {
+      .app { padding-block: 10px; }
+      .card { padding-block: 20px 16px; }
+      .poem { margin: 16px 0; }
+      .form-grid { gap: 10px; margin-top: 16px; }
+      .ticket { margin-top: 12px; }
+      .summary div { padding: 7px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <span class="float-heart heart-a" aria-hidden="true">💗</span>
+    <span class="float-heart heart-b" aria-hidden="true">💘</span>
+    <span class="float-heart heart-c" aria-hidden="true">💕</span>
+
+    <div class="shell">
+      <div class="progress" aria-label="Прогресс">
+        <span class="done"></span><span></span><span></span><span></span>
+      </div>
+
+      <section class="card" aria-live="polite">
+        <div class="step active" data-step="0">
+          <p class="eyebrow">секретное послание</p>
+          <h1>Ариадна Семеновна, <span class="script">это вам 💌</span></h1>
+          <div class="poem">
+            Федотова Ариадна —<br>
+            мой повод улыбаться.<br>
+            С тобой хочу почаще<br>
+            встречаться и влюбляться.
+          </div>
+          <button class="btn" type="button" data-next>Продолжить 💘</button>
+        </div>
+
+        <div class="step" data-step="1">
+          <p class="eyebrow">вопрос на миллион</p>
+          <h2>Ты пойдёшь со мной <span class="script">на свидание?</span></h2>
+          <p class="hint">Подумай внимательно. Подсказка: правильный ответ подсвечен розовым.</p>
+          <div class="choice-row">
+            <button class="btn" id="yesBtn" type="button">Да! 💖</button>
+            <button class="btn btn-ghost" id="noBtn" type="button">Нет</button>
+          </div>
+          <p class="error" id="noMessage" role="status"></p>
+        </div>
+
+        <div class="step" data-step="2">
+          <p class="eyebrow">идеальный план</p>
+          <h2>Соберём наше <span class="script">свидание</span></h2>
+          <form id="dateForm">
+            <div class="form-grid">
+              <label>Что смотрим?
+                <select id="watch" required>
+                  <option value="">Выбери вариант</option>
+                  <option>Романтический фильм</option>
+                  <option>Смешную комедию</option>
+                  <option>Сериал до утра</option>
+                  <option>Ужастик (чтобы держаться за руки)</option>
+                  <option>Порно 🙈</option>
+                  <option value="custom">На своё усмотрение</option>
+                </select>
+              </label>
+              <label class="hidden" id="watchCustomWrap">Свой вариант
+                <input id="watchCustom" maxlength="60" placeholder="Впиши, что хочешь посмотреть">
+              </label>
+
+              <label>Что едим?
+                <select id="food" required>
+                  <option value="">Выбери вкусненькое</option>
+                  <option>Роллы 🍣</option>
+                  <option>Пиццу 🍕</option>
+                  <option>Бургеры 🍔</option>
+                  <option>Фрукты и сладости 🍓</option>
+                  <option>Меня глазами — остальное закажем 😌</option>
+                  <option value="custom">Свой вариант</option>
+                </select>
+              </label>
+              <label class="hidden" id="foodCustomWrap">Свой вариант
+                <input id="foodCustom" maxlength="60" placeholder="Что заказать?">
+              </label>
+
+              <label>Когда?
+                <select id="when" required>
+                  <option value="">Выбери день</option>
+                </select>
+              </label>
+
+              <label>Какое настроение?
+                <select id="mood" required>
+                  <option value="">Настрой вечера</option>
+                  <option>Мило и романтично 💞</option>
+                  <option>Смешно и без серьёзных лиц 😜</option>
+                  <option>Обнимательно весь вечер 🫂</option>
+                  <option>Сюрприз — решим на месте ✨</option>
+                </select>
+              </label>
+
+              <label>Особое пожелание <span style="font-weight:500;color:var(--muted)">(необязательно)</span>
+                <textarea id="wish" maxlength="100" placeholder="Например: захватить плед и шоколадку"></textarea>
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-ghost back" type="button" data-back aria-label="Назад">←</button>
+              <button class="btn" type="submit">Всё выбрала 💗</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="step" data-step="3" id="resultCard">
+          <p class="eyebrow">свидание собрано</p>
+          <h2>Поздравляю! <span class="script">План готов ✨</span></h2>
+          <div class="ticket">
+            <div class="ticket-head">Наш билет на свидание</div>
+            <dl class="summary">
+              <div><dt>🎬</dt><dd><strong>Смотрим</strong><span id="summaryWatch"></span></dd></div>
+              <div><dt>🍕</dt><dd><strong>Едим</strong><span id="summaryFood"></span></dd></div>
+              <div><dt>📅</dt><dd><strong>Когда</strong><span id="summaryWhen"></span></dd></div>
+              <div><dt>💞</dt><dd><strong>Настроение</strong><span id="summaryMood"></span></dd></div>
+              <div id="summaryWishRow"><dt>💭</dt><dd><strong>Пожелание</strong><span id="summaryWish"></span></dd></div>
+            </dl>
+          </div>
+          <p class="final-note">Теперь сделай скриншот этой карточки и пришли его мне — я всё организую 💌</p>
+          <div class="final-actions">
+            <a class="btn" href="https://t.me/DrJetnik" target="_blank" rel="noopener noreferrer">Отправить скриншот мне в Telegram</a>
+            <button class="mini-link" type="button" id="editBtn">Изменить выбор</button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    const steps = [...document.querySelectorAll('.step')];
+    const progress = [...document.querySelectorAll('.progress span')];
+    let currentStep = 0;
+
+    function showStep(index) {
+      currentStep = index;
+      steps.forEach((step, i) => step.classList.toggle('active', i === index));
+      progress.forEach((bar, i) => bar.classList.toggle('done', i <= index));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelector('[data-next]').addEventListener('click', () => showStep(1));
+    document.querySelector('[data-back]').addEventListener('click', () => showStep(1));
+    document.getElementById('yesBtn').addEventListener('click', () => showStep(2));
+
+    const noMessages = [
+      'Ошибка 404: ответ «нет» не найден 😌',
+      'Хм… кнопка опять ошиблась. Попробуй соседнюю 💗',
+      'Система говорит, что ты хотела нажать «Да» 👀'
+    ];
+    let noClicks = 0;
+    const noBtn = document.getElementById('noBtn');
+    noBtn.addEventListener('click', () => {
+      const message = document.getElementById('noMessage');
+      message.textContent = noMessages[Math.min(noClicks, noMessages.length - 1)];
+      noClicks += 1;
+      noBtn.classList.remove('shake');
+      void noBtn.offsetWidth;
+      noBtn.classList.add('shake');
+    });
+
+    function setupCustom(selectId, wrapId, inputId) {
+      const select = document.getElementById(selectId);
+      const wrap = document.getElementById(wrapId);
+      const input = document.getElementById(inputId);
+      select.addEventListener('change', () => {
+        const isCustom = select.value === 'custom';
+        wrap.classList.toggle('hidden', !isCustom);
+        input.required = isCustom;
+        if (!isCustom) input.value = '';
+      });
+    }
+
+    setupCustom('watch', 'watchCustomWrap', 'watchCustom');
+    setupCustom('food', 'foodCustomWrap', 'foodCustom');
+
+    const dateSelect = document.getElementById('when');
+    const formatter = new Intl.DateTimeFormat('ru-RU', { weekday: 'long', day: 'numeric', month: 'long' });
+    for (let i = 0; i < 7; i += 1) {
+      const date = new Date();
+      date.setHours(12, 0, 0, 0);
+      date.setDate(date.getDate() + i);
+      const option = document.createElement('option');
+      option.value = date.toISOString().slice(0, 10);
+      const label = formatter.format(date);
+      option.textContent = i === 0 ? `Сегодня, ${label}` : label.charAt(0).toUpperCase() + label.slice(1);
+      dateSelect.append(option);
+    }
+
+    function selectedText(id) {
+      const select = document.getElementById(id);
+      return select.options[select.selectedIndex].text;
+    }
+
+    function celebrate() {
+      const layer = document.getElementById('confetti');
+      layer.innerHTML = '';
+      const pieces = ['💗', '✨', '💕', '💘'];
+      for (let i = 0; i < 18; i += 1) {
+        const piece = document.createElement('i');
+        piece.textContent = pieces[i % pieces.length];
+        piece.style.left = `${Math.random() * 95}%`;
+        piece.style.fontSize = `${14 + Math.random() * 16}px`;
+        piece.style.setProperty('--shift', `${-35 + Math.random() * 70}px`);
+        piece.style.animationDelay = `${Math.random() * .55}s`;
+        layer.append(piece);
+      }
+      setTimeout(() => { layer.innerHTML = ''; }, 3600);
+    }
+
+    document.getElementById('dateForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const watch = document.getElementById('watch').value === 'custom'
+        ? document.getElementById('watchCustom').value.trim()
+        : selectedText('watch');
+      const food = document.getElementById('food').value === 'custom'
+        ? document.getElementById('foodCustom').value.trim()
+        : selectedText('food');
+      const wish = document.getElementById('wish').value.trim();
+
+      document.getElementById('summaryWatch').textContent = watch;
+      document.getElementById('summaryFood').textContent = food;
+      document.getElementById('summaryWhen').textContent = selectedText('when');
+      document.getElementById('summaryMood').textContent = selectedText('mood');
+      document.getElementById('summaryWish').textContent = wish;
+      document.getElementById('summaryWishRow').classList.toggle('hidden', !wish);
+      showStep(3);
+      celebrate();
+    });
+
+    document.getElementById('editBtn').addEventListener('click', () => showStep(2));
+  </script>
+</body>
+</html>
